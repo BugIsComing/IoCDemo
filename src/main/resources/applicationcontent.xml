@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id = "dao" class = "com.lc.model.Dao"/>
+    <bean id = "service" class = "com.lc.model.Service">
+        <property name = "dao" ref = "dao"/>
+    </bean>
+    <bean id = "user" class = "com.lc.model.User">
+        <property name = "service" ref = "service"/>
+    </bean>
+</beans>
