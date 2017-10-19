@@ -1,6 +1,14 @@
 package com.lc.model;
 
 public class Service {
+    public Service(){
+
+    }
+
+    public Service(Dao dao) {
+        this.dao = dao;
+    }
+
     public Dao getDao() {
         return dao;
     }

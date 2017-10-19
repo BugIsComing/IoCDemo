@@ -1,6 +1,14 @@
 package com.lc.model;
 
 public class User {
+    public User(){
+
+    }
+    public User(Service service,Dao dao){
+        this.service = service;
+        this.dao = dao;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -37,5 +45,15 @@ public class User {
     }
 
     private Service service;
+
+    public Dao getDao() {
+        return dao;
+    }
+
+    public void setDao(Dao dao) {
+        this.dao = dao;
+    }
+
+    private Dao dao;
 
 }
