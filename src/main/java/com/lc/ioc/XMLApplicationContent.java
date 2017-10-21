@@ -56,11 +56,13 @@ public class XMLApplicationContent implements BeanFactory {
         List<Property> temp = bean.getValue().getPropertiesList();
         if(temp != null && temp.size() != 0){
             for(Property pro:temp){
-                Method method = BeanUtil.getSetterMethod(obj,pro.getName());
-                if(method == null){
-                    throw new RuntimeException("没有这个Set方法");
-                }
+                Method method = null;
+
                 if (pro.getValue() != null){
+                    method = BeanUtil.getSetterMethod(obj,pro.getName());
+                    if(method == null){
+                        throw new RuntimeException("没有这个Set方法");
+                    }
                     try {
                         method.invoke(obj,pro.getValue());
                     } catch (IllegalAccessException e) {
@@ -69,8 +71,12 @@ public class XMLApplicationContent implements BeanFactory {
                         e.printStackTrace();
                     }
                 }else if(pro.getRef() != null){
+                    Object member = beanMap.get(pro.getName());
+                    method = BeanUtil.getSetterMethod(obj,pro.getName(),member);
+                    if(method == null){
+                        throw new RuntimeException("没有这个Set方法");
+                    }
                     try {
-                        Object member = beanMap.get(pro.getName());
                         if(member == null){
                             throw new RuntimeException("没有该对象");
                         }

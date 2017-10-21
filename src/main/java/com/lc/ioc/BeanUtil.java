@@ -12,7 +12,6 @@ public class BeanUtil {
     public static Method getSetterMethod(Object obj,String name){
        //构造set方法名
         String nameTemp = "set" + name.substring(0,1).toUpperCase()+name.substring(1);
-
         try {
             Method[] methods = obj.getClass().getMethods();
             for (int i=0;i<methods.length;i++){
@@ -23,6 +22,18 @@ public class BeanUtil {
         } catch (Exception e){
             e.printStackTrace();
         }
+
         return null;
+    }
+    public static Method getSetterMethod(Object obj,String name,Object property){
+        //构造set方法名
+        String nameTemp = "set" + name.substring(0,1).toUpperCase()+name.substring(1);
+        Method method = null;
+        try {
+            method = obj.getClass().getMethod(nameTemp,property.getClass());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return method;
     }
 }
