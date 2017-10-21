@@ -7,5 +7,7 @@
     <bean id = "user" class = "com.lc.model.User">
         <property name = "service" ref = "service"/>
         <property name = "dao" ref = "dao"/>
+        <property name = "userName" value = "LC"/>
+        <property name = "userAddress" value = "Chengdu"/>
     </bean>
 </beans>

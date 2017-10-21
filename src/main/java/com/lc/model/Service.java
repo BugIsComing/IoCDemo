@@ -2,7 +2,6 @@ package com.lc.model;
 
 public class Service {
     public Service(){
-
     }
 
     public Service(Dao dao) {

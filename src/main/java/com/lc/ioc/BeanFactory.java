@@ -1,4 +1,4 @@
-package com.lc.tool;
+package com.lc.ioc;
 
 /*
  *bean容器，存放所有的对象
