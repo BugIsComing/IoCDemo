@@ -1,12 +1,20 @@
 package com.lc.model;
 
-public class User {
-    public User(){
+import java.util.Date;
 
-    }
-    public User(Service service,Dao dao){
-        this.service = service;
-        this.dao = dao;
+/**
+ * @author LC
+ */
+public class User {
+    private String userName;
+    private String userAddress;
+    private int age;
+    private Service service;
+    private Dao dao;
+    private Date birth;
+    private Double height;
+
+    public User(){
     }
 
     public String getUserName() {
@@ -25,16 +33,13 @@ public class User {
         this.userAddress = userAddress;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userName='" + userName + '\'' +
-                ", userAddress='" + userAddress + '\'' +
-                '}';
+    public int getAge() {
+        return age;
     }
 
-    private String userName;
-    private String userAddress;
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public Service getService() {
         return service;
@@ -44,8 +49,6 @@ public class User {
         this.service = service;
     }
 
-    private Service service;
-
     public Dao getDao() {
         return dao;
     }
@@ -54,6 +57,30 @@ public class User {
         this.dao = dao;
     }
 
-    private Dao dao;
+    public Date getBirth() {
+        return birth;
+    }
 
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", userAddress='" + userAddress + '\'' +
+                ", age='" + age + '\'' +
+                ", birth='" + birth + '\'' +
+                ", height='" + height + '\'' +
+                '}';
+    }
 }

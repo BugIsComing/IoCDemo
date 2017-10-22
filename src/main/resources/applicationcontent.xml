@@ -9,5 +9,8 @@
         <property name = "dao" ref = "dao"/>
         <property name = "userName" value = "LC"/>
         <property name = "userAddress" value = "Chengdu"/>
+        <property name = "age" value = "25"/>
+        <property name = "birth" value = "2017/10/22"/>
+        <property name = "height" value = "177.77"/>
     </bean>
 </beans>

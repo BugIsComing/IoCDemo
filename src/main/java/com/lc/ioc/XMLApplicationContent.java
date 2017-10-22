@@ -56,36 +56,19 @@ public class XMLApplicationContent implements BeanFactory {
         List<Property> temp = bean.getValue().getPropertiesList();
         if(temp != null && temp.size() != 0){
             for(Property pro:temp){
-                Method method = null;
-
                 if (pro.getValue() != null){
-                    method = BeanUtil.getSetterMethod(obj,pro.getName());
-                    if(method == null){
-                        throw new RuntimeException("没有这个Set方法");
-                    }
-                    try {
-                        method.invoke(obj,pro.getValue());
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    }
+                   BeanUtil.getAndInvokeSetterMethod(obj,pro,true);
                 }else if(pro.getRef() != null){
                     Object member = beanMap.get(pro.getName());
-                    method = BeanUtil.getSetterMethod(obj,pro.getName(),member);
-                    if(method == null){
-                        throw new RuntimeException("没有这个Set方法");
-                    }
+                    Method method = BeanUtil.getAndInvokeSetterMethod(obj,pro,false);
                     try {
-                        if(member == null){
-                            throw new RuntimeException("没有该对象");
-                        }
                         method.invoke(obj,member);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
                         e.printStackTrace();
                     }
+
                 }else{
                     throw new RuntimeException("配置文件中属性定义错误");
                 }
