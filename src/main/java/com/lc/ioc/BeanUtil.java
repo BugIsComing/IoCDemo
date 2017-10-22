@@ -4,11 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+
 
 /**
- * @author LC
  * @Author:LC
  * @Date:Created in 14:00 2017/10/21
  * @Modifyed by:
@@ -18,6 +16,13 @@ public class BeanUtil {
     public BeanUtil(){
 
     }
+
+    /**
+     * @param obj
+     * @param pro
+     * @param flag:值注入时为true，否则为false
+     * @return
+     */
     public static Method getAndInvokeSetterMethod(Object obj,Property pro,boolean flag){
         Method method = null;
         //获取属性的类型

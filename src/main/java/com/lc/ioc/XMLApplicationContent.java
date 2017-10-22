@@ -21,8 +21,9 @@ public class XMLApplicationContent implements BeanFactory {
      * Constructor
      */
     public XMLApplicationContent(String filePath){
-        beanMap = new HashMap<String,Object>();
+        beanMap = new HashMap<>();
         config = XmlConfig.getApplicationContent(filePath);
+        initBeanMap();
         if (config!=null && !config.isEmpty()){
             for (Map.Entry<String,Bean> bean:config.entrySet()){
                 Object obj = createBeanBySetter(bean);
@@ -38,21 +39,8 @@ public class XMLApplicationContent implements BeanFactory {
      * Create Bean by Setter
      */
     public Object createBeanBySetter(Map.Entry<String,Bean> bean){
-        Object obj=null;
-        String className = bean.getValue().getClassName();
-        Class<?> cls = null;
-        try {
-            cls = Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            obj = cls.newInstance();//调用类的无参构造方法
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        Object obj = beanMap.get(bean.getValue().getId());
+
         List<Property> temp = bean.getValue().getPropertiesList();
         if(temp != null && temp.size() != 0){
             for(Property pro:temp){
@@ -75,5 +63,35 @@ public class XMLApplicationContent implements BeanFactory {
             }
         }
         return obj;
+    }
+
+    /**
+     *
+     */
+    private void initBeanMap(){
+        if (config!=null && !config.isEmpty()){
+            for (Map.Entry<String,Bean> bean:config.entrySet()){
+                intBeanByConstructor(bean);
+            }
+        }
+    }
+
+    private void intBeanByConstructor(Map.Entry<String,Bean> bean){
+        Object obj = null;
+        Class<?> cls = null;
+        try {
+            cls = Class.forName(bean.getValue().getClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            /* 默认构造函数 */
+            obj = cls.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        beanMap.put(bean.getValue().getId(),obj);
     }
 }

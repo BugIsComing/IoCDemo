@@ -2,6 +2,7 @@ package com.lc.test;
 import com.lc.ioc.XMLApplicationContent;
 import com.lc.model.Dao;
 import com.lc.model.Service;
+import com.lc.model.Test;
 import com.lc.model.User;
 
 public class Main {
@@ -10,8 +11,11 @@ public class Main {
        User user = (User)test.getBean("user");
        Service service = (Service) test.getBean("service");
        Dao dao = (Dao)test.getBean("dao");
+       Test ts = (Test)test.getBean("test");
        System.out.println(user.toString());
        System.out.println(service.toString());
        System.out.println(dao.toString());
+       System.out.println(ts.toString());
+
     }//存在的问题是如果具有一个类依赖某一个类，必须先注入依赖项对象
 }
