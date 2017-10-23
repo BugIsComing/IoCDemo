@@ -15,6 +15,7 @@
         <property name = "age" value = "25"/>
         <property name = "birth" value = "2017/10/22"/>
         <property name = "height" value = "177.77"/>
+        <property name = "heavy" value = "124"/>
     </bean>
     <bean id = "test" class="com.lc.model.Test">
         <property name = "dao" ref = "dao"/>

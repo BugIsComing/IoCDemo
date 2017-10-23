@@ -13,6 +13,7 @@ public class User {
     private Dao dao;
     private Date birth;
     private Double height;
+    private Long heavy;
 
     public User(){
     }
@@ -73,6 +74,14 @@ public class User {
         this.height = height;
     }
 
+    public Long getHeavy() {
+        return heavy;
+    }
+
+    public void setHeavy(Long heavy) {
+        this.heavy = heavy;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -81,6 +90,7 @@ public class User {
                 ", age='" + age + '\'' +
                 ", birth='" + birth + '\'' +
                 ", height='" + height + '\'' +
+                ", heavy='" + heavy + '\'' +
                 '}';
     }
 }

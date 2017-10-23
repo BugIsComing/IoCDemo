@@ -58,8 +58,12 @@ public class BeanUtil {
             data= new Integer(pro.getValue());
         }else if(className.equals(ConstantVariable.DOUBLE_CLASS_CONS)){
             data= new Double(pro.getValue());
-        }else if(className.equals(ConstantVariable.LITTELE_DOUBLE_CLASS_CONS)){
+        }else if(className.equals(ConstantVariable.LITTLE_DOUBLE_CLASS_CONS)){
             data = (double)Double.parseDouble(pro.getValue());
+        }else if(className.equals(ConstantVariable.LONG_CLASS_CONS)){
+            data= new Long(pro.getValue());
+        }else if(className.equals(ConstantVariable.LITTLE_LONG_CLASS_CONS)){
+            data = (long)Long.parseLong(pro.getValue());
         }else if(className.equals(ConstantVariable.DATE_CLASS_CONS)){
             SimpleDateFormat sdf= new SimpleDateFormat("yyyy/MM/dd");
             try {
