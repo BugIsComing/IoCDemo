@@ -1,17 +1,17 @@
 package com.lc.model;
 
 public class Dao {
-    private Test test;
+   // private Test test;
     public Dao(){
     }
 
-    public Test getTest() {
-        return test;
-    }
-
-    public void setTest(Test test) {
-        this.test = test;
-    }
+//    public Test getTest() {
+//        return test;
+//    }
+//
+//    public void setTest(Test test) {
+//        this.test = test;
+//    }
 
     public void save(){
         System.out.println("save a user");

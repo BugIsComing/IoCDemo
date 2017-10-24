@@ -23,14 +23,18 @@ public class XMLApplicationContent implements BeanFactory {
     public XMLApplicationContent(String filePath){
         beanMap = new HashMap<>();
         config = XmlConfig.getApplicationContent(filePath);
-        initBeanMap();
-        if (config!=null && !config.isEmpty()){
-            for (Map.Entry<String,Bean> bean:config.entrySet()){
-                Object obj = createBeanBySetter(bean);
-                if(obj == null){
-                    throw new RuntimeException("Create Bean Error");
+        if ("constructor".equals(XmlConfig.iocType)){
+            //
+        }else{
+            initBeanMap();
+            if (config!=null && !config.isEmpty()){
+                for (Map.Entry<String,Bean> bean:config.entrySet()){
+                    Object obj = createBeanBySetter(bean);
+                    if(obj == null){
+                        throw new RuntimeException("Create Bean Error");
+                    }
+                    beanMap.put(bean.getKey(),obj);
                 }
-                beanMap.put(bean.getKey(),obj);
             }
         }
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+    <!--type value = "setter"/>
     <bean id = "dao" class = "com.lc.model.Dao">
         <property name = "test" ref = "test"/>
     </bean>
@@ -21,5 +22,14 @@
         <property name = "dao" ref = "dao"/>
         <property name = "service" ref= "service"/>
         <property name = "user" ref="user"/>
+    </bean-->
+    <type value = "constructor"/>
+    <bean id = "dao" class = "com.lc.model.Dao"/>
+    <bean id = "service" class = "com.lc.model.Service">
+        <constructor-arg name = "dao" ref = "dao"/>
+    </bean>
+    <bean id = "user" class = "com.lc.model.User">
+        <constructor-arg name = "service" ref = "service"/>
+        <constructor-arg name = "dao" ref = "dao"/>
     </bean>
 </beans>

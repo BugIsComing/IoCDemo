@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class XmlConfig {
+    /**
+     * 默认为setter
+     */
+    public  static String iocType = "setter";
     public static Map<String,Bean> getApplicationContent(String fileName){
         Map<String,Bean> config = new HashMap<String,Bean>();
         if ("".equals(fileName)){
@@ -22,6 +26,8 @@ public class XmlConfig {
         try {
             Document doc = reader.read(new File(fileName));
             String nodeName = "//bean";
+            List<Element> typeList = doc.selectNodes("//type");
+            iocType = typeList.get(0).attributeValue("value");
             List<Element> eleList = doc.selectNodes(nodeName);
 
             for(Element ele : eleList) {
@@ -56,5 +62,13 @@ public class XmlConfig {
             return null;
         }
         return config;
+    }
+
+    public String getIocType() {
+        return iocType;
+    }
+
+    public void setIocType(String iocType) {
+        this.iocType = iocType;
     }
 }

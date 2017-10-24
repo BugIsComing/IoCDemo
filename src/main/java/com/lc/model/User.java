@@ -18,6 +18,17 @@ public class User {
     public User(){
     }
 
+    public User(Service service,Dao dao){
+        this.service = service;
+        this.dao = dao;
+        this.age = 25;
+        this.userAddress = "LC";
+        this.userAddress = "ChengDu";
+        this.birth = new Date();
+        this.height = 177.7;
+        this.heavy = new Long(123);
+    }
+
     public String getUserName() {
         return userName;
     }
