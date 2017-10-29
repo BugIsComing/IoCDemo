@@ -7,6 +7,15 @@ public class Bean {
     private String id;
     private String className;
     private List<Property> propertiesList = new ArrayList<Property>();
+    private List<ConstructorArgument> constructorArgumentList = new ArrayList<ConstructorArgument>();
+
+    public List<ConstructorArgument> getConstructorArgumentList() {
+        return constructorArgumentList;
+    }
+
+    public void setConstructorArgumentList(List<ConstructorArgument> constructorArgumentList) {
+        this.constructorArgumentList = constructorArgumentList;
+    }
 
     public String getId() {
         return id;
@@ -31,6 +40,7 @@ public class Bean {
     public void setPropertiesList(List<Property> propertiesList) {
         this.propertiesList = propertiesList;
     }
+
 
     public Bean(String id, String className, List<Property> propertiesList) {
         this.id = id;

@@ -36,19 +36,30 @@ public class XmlConfig {
                 String cls = ele.attributeValue("class");
                 bean.setId(beanId);
                 bean.setClassName(cls);
+                List<Element> properties;
+                if ("constructor".equals(iocType)){
+                    properties = ele.elements("constructor-arg");
+                }else{
+                    properties = ele.elements("property");
+                }
 
-                List<Element> properties = ele.elements("property");
                 for(Element proEle:properties){
-                    Property pro = new Property();
-                    String proName = proEle.attributeValue("name");
-                    String proRef = proEle.attributeValue("ref");
-                    String proVal = proEle.attributeValue("value");
 
-                    pro.setName(proName);
-                    pro.setRef(proRef);
-                    pro.setValue(proVal);
+                    Map<String,String> map = getProperty(proEle);
 
-                    bean.getPropertiesList().add(pro);
+                    if ("constructor".equals(iocType)){
+                        ConstructorArgument conArg = new ConstructorArgument();
+                        conArg.setName(map.get("name"));
+                        conArg.setRef(map.get("ref"));
+                        conArg.setValue(map.get("value"));
+                        bean.getConstructorArgumentList().add(conArg);
+                    }else{
+                        Property pro = new Property();
+                        pro.setName(map.get("name"));
+                        pro.setRef(map.get("ref"));
+                        pro.setValue(map.get("value"));
+                        bean.getPropertiesList().add(pro);
+                    }
                 }
 
                 if(config.containsKey(beanId)){
@@ -70,5 +81,13 @@ public class XmlConfig {
 
     public void setIocType(String iocType) {
         this.iocType = iocType;
+    }
+
+    public static Map<String,String> getProperty(Element ele){
+        Map result = new HashMap<>();
+        result.put("name",ele.attributeValue("name"));
+        result.put("ref",ele.attributeValue("ref"));
+        result.put("value",ele.attributeValue("value"));
+        return result;
     }
 }
